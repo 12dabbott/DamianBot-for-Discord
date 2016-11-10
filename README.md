@@ -1,6 +1,13 @@
 # DamianBot for Discord
 Personal Discord bot using Discord.py API Wrapper
 
+#Running your bot
+cd to directory where bot.py is located.
+
+run: python bot.py in your shell.
+
+NOTE: USES Python 3
+
 #Setting it up
 ## Your Virtual Environment
 cd to the directory where requirements.txt is located.
