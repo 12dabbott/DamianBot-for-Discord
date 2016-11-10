@@ -2,6 +2,13 @@
 Personal Discord bot using Discord.py API Wrapper
 
 #Setting it up
+## Your Virtual Environment
+cd to the directory where requirements.txt is located.
+
+activate your virtualenv.
+
+run: pip install -r requirements.txt in your shell.
+
 ## [Bot.py](./bot.py)
 On line 55 You will need to replace 'TOKEN HERE' with your bot's token.
 
@@ -30,5 +37,8 @@ async def eat(self, ctx):
 
 ## YES! I could have made this easier to 'config'
 I actually did not plan on releasing this on Github, but decided, why not. So here it is and I will maintain updates on it with new features.
+
 The math command I am still working on perfecting the parsed data SENT and RECIEVED, since if there is a fraction it will be /FRAC{#}{#}
-So for now with the math function, keep it simple stupid. Be careful spamming the !eat function, google will ban you.
+So for now with the math function, keep it simple stupid.
+
+Be careful spamming the !eat function, google will ban you.
