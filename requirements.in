@@ -1,0 +1,6 @@
+# requirements.in
+cleverbot
+discord.py
+praw
+requests
+beautifulsoup4
