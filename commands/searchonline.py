@@ -2,6 +2,7 @@ from discord.ext import commands
 import requests
 import googlemaps
 import json
+import re
 from google import search
 from random import randint
 from bs4 import BeautifulSoup
@@ -32,12 +33,12 @@ class SearchOnline:
 
     @commands.command(name='eat', pass_context=True, help='Find a random place near you to eat at, just give a location.')
     async def eat(self, ctx):
-        gmaps = googlemaps.Client(key='GOOGLEAPIAUTHKEY')
+        gmaps = googlemaps.Client(key='AIzaSyDBJzSf4DoHnFn-uMpceFs7_WmIeGeoIG8')
         loc = ctx.message.content[len('!eat'):].strip()
         geocode_result = gmaps.geocode(str(loc))
 
         def GoogPlac(lat,lng,radius,types):
-          AUTH_KEY = 'GOOGLEAPIAUTHKEY'
+          AUTH_KEY = 'TOKEN_HERE'
           LOCATION = str(lat) + "," + str(lng)
           RADIUS = radius
           TYPES = types
@@ -68,13 +69,15 @@ class SearchOnline:
 
     @commands.command(name='math', pass_context=True, help='Solve any math problem. Still being worked on, keep your problems simple.')
     async def math(self, ctx):
+        patt = r'\\frac\{(\w+)\}\{(\w+)\}'
         equation = ctx.message.content[len('!math'):].strip()
         equation.replace('=', '%3D')
         payload = {'userId': 'fe', 'query': equation, 'connected': '', 'language': 'en'}
         r = requests.get('https://www.symbolab.com/steps?', params=payload)
         jsonData = json.loads(r.text)
         answer = jsonData['solutions'][0]['entire_result']
-        await self.bot.say(str(answer))
+        parsed_s = re.sub(patt, r'(\1)/(\2)', answer)
+        await self.bot.say(str(parsed_s))
 
 def setup(bot):
     bot.add_cog(SearchOnline(bot))

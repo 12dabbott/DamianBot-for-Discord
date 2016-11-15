@@ -15,6 +15,8 @@ initial_extensions = [
     'commands.searchonline'
 ]
 
+callisays = ['bye', 'adios', 'cya']
+
 help_attrs = dict(hidden=True)
 
 prefix = ['!', '\N{HEAVY EXCLAMATION MARK SYMBOL}']
@@ -49,10 +51,27 @@ async def on_message(message):
         await bot.send_message(message.channel, 'It\'s Tuesday you fucking retard')
     elif 'kys' in message.content.lower() and message.author != bot.user and not message.content.startswith('!'):
         await bot.send_message(message.channel, '(Keep yourself safe)')
+    elif 'kms' in message.content.lower() and message.author != bot.user and not message.content.startswith('!'):
+        await bot.send_message(message.channel, 'If you need to talk, please call the Suicide Prevention Hotline at 1-800-273-TALK (8255) any time')
+    elif any(x in message.content.lower() for x in callisays) and message.author.id == '236295255530536960':
+        await bot.send_message(message.channel, 'What she means is: \"I prefer not to engage in this conversation\"')
+    elif message.content.startswith('!callisays') and message.author != bot.user:
+        global callisays
+        calliword = message.content[len('!callisays'):].strip()
+        if calliword == '' or calliword == ' ':
+            return
+        calliword = calliword.lower()
+        callisays.append(str(calliword))
+        await bot.send_message(message.channel, 'Added {} to the list of words Calli uses when avoiding a conversation!'.format(str(calliword)))
+    elif '!clearcalli' in message.content and message.author != bot.user:
+        global callisays
+        callisays = ['bye', 'adios', 'cya']
+        await bot.send_message(message.channel, 'Okay! Reset Calli\'s words to the original words!')
+
 
 
 if __name__ == '__main__':
-    token = 'TOKEN HERE'
+    token = 'TOKEN_HERE'
     for extension in initial_extensions:
         try:
             bot.load_extension(extension)

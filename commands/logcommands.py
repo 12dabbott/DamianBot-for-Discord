@@ -42,7 +42,7 @@ class LogCommands():
 
     @commands.command(name='purge', pass_context=True, hidden=True)
     async def purge(self, ctx):
-        if ctx.message.author.id == 'YOUR CLIENT ID':
+        if ctx.message.author.id == '143880485968281602':
             def is_me(m):
                 return m.author == self.bot.user
             def is_to_me(m):
