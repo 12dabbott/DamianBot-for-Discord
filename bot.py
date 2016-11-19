@@ -12,7 +12,8 @@ initial_extensions = [
     'commands.ascii',
     'commands.chatbots',
     'commands.logcommands',
-    'commands.searchonline'
+    'commands.searchonline',
+    'commands.poll'
 ]
 
 callisays = ['bye', 'adios', 'cya']
@@ -45,11 +46,7 @@ async def on_error(event, *args, **kwargs):
 
 @bot.listen()
 async def on_message(message):
-    if 'game' in message.content.lower() and message.author != bot.user and not message.content.startswith('!'):
-        await bot.send_message(message.channel, 'You lost it')
-    elif 'wednesday' in message.content.lower() and message.author != bot.user and not message.content.startswith('!'):
-        await bot.send_message(message.channel, 'It\'s Tuesday you fucking retard')
-    elif 'kys' in message.content.lower() and message.author != bot.user and not message.content.startswith('!'):
+    if 'kys' in message.content.lower() and message.author != bot.user and not message.content.startswith('!'):
         await bot.send_message(message.channel, '(Keep yourself safe)')
     elif 'kms' in message.content.lower() and message.author != bot.user and not message.content.startswith('!'):
         await bot.send_message(message.channel, 'If you need to talk, please call the Suicide Prevention Hotline at 1-800-273-TALK (8255) any time')
@@ -59,6 +56,7 @@ async def on_message(message):
         global callisays
         calliword = message.content[len('!callisays'):].strip()
         if calliword == '' or calliword == ' ':
+            await bot.send_message(message.channel, 'Current Calliwords: {}'.format(callisays))
             return
         calliword = calliword.lower()
         callisays.append(str(calliword))
@@ -66,7 +64,11 @@ async def on_message(message):
     elif '!clearcalli' in message.content and message.author != bot.user:
         global callisays
         callisays = ['bye', 'adios', 'cya']
-        await bot.send_message(message.channel, 'Okay! Reset Calli\'s words to the original words!')
+        await bot.send_message(message.channel, 'Okay! Reset Calli\'s words to {}'.format(callisays))
+    elif 'burn' in message.content.lower() and message.author != bot.user and not message.content.startswith('!'):
+        await bot.send_message(message.channel, 'https://en.wikipedia.org/wiki/List_of_burn_centers_in_the_United_States')
+    elif 'retard' in message.content.lower() and message.author != bot.user and not message.content.startswith('!'):
+        await bot.delete_message(message)
 
 
 

@@ -45,7 +45,4 @@ async def eat(self, ctx):
 ## YES! I could have made this easier to 'config'
 I actually did not plan on releasing this on Github, but decided, why not. So here it is and I will maintain updates on it with new features.
 
-The math command I am still working on perfecting the parsed data SENT and RECIEVED, since if there is a fraction it will be /FRAC{#}{#}
-So for now with the math function, keep it simple stupid.
-
 Be careful spamming the !eat function, google will ban you.
